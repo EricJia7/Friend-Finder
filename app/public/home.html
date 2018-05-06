@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>FriendFinder</title>
-</head>
+        <title>FriendFinder</title>
+    </head>
 
-
-<body>
-    <div class="container">
-        <div class="jumbotron">
-            <div>
-                <h1 class="display-4">Friend Finder</h1>
-                <i class="fa fa-facebook-square"></i>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>
+                    <i class="fa fa-facebook-square" style="font-size:68px"> Friend Finder</i>
+                </h1>
+                <hr class = "my-4">
+                <h2 style = "font-family: 'Open Sans', sans-serif;">Answer a few basic questions. </h2>
+                <h2 style = "font-family: 'Open Sans', sans-serif;">Then find the friend with the greatest compatibility! </h2>
+                <br>
+                <div>
+                    <a href = "/survey">
+                        <button type="button" class="btn btn-info btn-lg">
+                            <h4 style = "font-family: 'Open Sans', sans-serif;">
+                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Go to Survey
+                            </h4>
+                        </button> 
+                    </a>
+                </div>
             </div>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 text-center" style = "font-family: 'Open Sans', sans-serif;">
+                        <a href = "api/friends" class="text-dark">API Friends List</a>
+                    </div>
+                    <div class="col-md-2 text-center" style = "font-family: 'Open Sans', sans-serif;">
+                        <a href="https://github.com/jiapurdue/Friend-Finder" class="text-dark">GitHub Repo</a>
+                    </div>
+                    <div class="col-md-8"></div>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
-
-
+    </body>
 </html>
