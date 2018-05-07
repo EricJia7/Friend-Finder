@@ -4,10 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
         <title>FriendFinder</title>
     </head>
@@ -35,7 +37,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="input-group input-group-lg mb-4">
-                        <select class="custom-select custom-select-sm" id="qInput2">
+                        <select class="custom-select custom-select-sm" id="qInput1">
                             <option selected>Select an Option</option>
                             <option value="1">1(Strongly Disagree)</option>
                             <option value="2">2</option>
@@ -169,6 +171,7 @@
             <h4 class = "font-weight-bold" style = "font-family: sans-serif;">Question 9</h4>
             <h6 style = "font-family: sans-serif;">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h6>
             <div class="row">
+                
                 <div class="col-md-3">
                     <div class="input-group input-group-lg mb-4">
                         <select class="custom-select custom-select-sm" id="qInput9">
@@ -200,7 +203,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-info btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>  Submit</button>
+            <button type="submit" class="btn btn-info btn-lg btn-block" id="submit" style = "font-family: sans-serif;"><i class="fa fa-check-circle" aria-hidden="true"></i>  Submit</button>
             <br>
 
             <div class="container">
@@ -220,5 +223,53 @@
 
         </div>
 
+        <div class="modal fade" id="bestMatchModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle" style = "font-family: sans-serif;">Here is your friend</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center text-uppercase" style = "font-family: sans-serif;">
+                    <h3 id = 'nameText'></h3>
+                    <img id = 'photoUrl' style = "height: auto; width: 80%">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style = "font-family: sans-serif;">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
+
+<script type="text/javascript">
+
+    $("#submit").click((event) => {
+        event.preventDefault();
+
+        let infoInput = {
+            name: $('#nameInput').val(),
+            photo: $('#urlInput').val().trim(),
+            score: [$('#qInput1').val(),$('#qInput2').val(),$('#qInput3').val(),
+                    $('#qInput4').val(),$('#qInput5').val(),$('#qInput6').val(),
+                    $('#qInput7').val(),$('#qInput8').val(),$('#qInput9').val(),
+                    $('#qInput10').val()]
+        };
+        console.log(infoInput);
+        
+        $.post("/surve", infoInput)
+        .then(function(data) {
+            console.log(data)
+            $('#nameText').text(data[0]);
+            $('#photoUrl').attr('src',data[1]);
+            $('#bestMatchModal').modal('show');
+        });
+
+    });
+
+
+</script>
